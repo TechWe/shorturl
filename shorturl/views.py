@@ -9,6 +9,5 @@ def index(requests):
 # Redirect to origin URL
 def go_to_origin(requests, keyword):
     item = get_object_or_404(Url, keyword=keyword)
-    item.clicks += 1
-    item.save()
+    item.clicked()
     return redirect(item.origin_url)
