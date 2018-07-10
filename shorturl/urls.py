@@ -8,5 +8,5 @@ urlpatterns = [
     path('', views.index),
     # Route shorturl
     # eg. /abc, keyword = 'abc'
-    re_path(r'^(?P<keyword>[\w][\w-]+)$', views.go_to_origin),
+    re_path(r'^(?P<keyword>[\w]+[\w-]*)$', views.go_to_origin),
 ]
