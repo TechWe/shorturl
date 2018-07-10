@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Url, Log
+
+admin.site.register(Url)
+admin.site.register(Log)
