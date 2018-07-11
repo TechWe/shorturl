@@ -3,14 +3,27 @@ from django.contrib import admin
 from .models import Url, Log
 
 class UrlAdmin(admin.ModelAdmin):
-    readonly_fields = ['creator', 'creator_ip', 'timestamp']
+    list_display = ['id', 'title', 'keyword', 'origin_url']
+    list_display_links = ['id', 'title']
+    #
+    readonly_fields = ('clicks', 'timestamp')
     fieldsets = [
         ('Url Information', {
             'fields': ['keyword', 'origin_url', 'title']
             }),
-        ('Clicks', {'fields': ['clicks']}),
-        ('Creator Information', {'fields': readonly_fields})
+        ('Other', {
+            'fields': ['category', 'tags'],
+            'classes': ['collapse']
+        }),
+        (None, {'fields': readonly_fields}),
     ]
-admin.site.register(Url, UrlAdmin)
 
-admin.site.register(Log)
+class LogAdmin(admin.ModelAdmin):
+    list_display = ['id', 'url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
+    list_display_links = ['id', 'url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
+    #
+    readonly_fields = ['url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
+
+
+admin.site.register(Url, UrlAdmin)
+admin.site.register(Log, LogAdmin)

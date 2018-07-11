@@ -6,8 +6,8 @@ class Url(models.Model):
     origin_url = models.URLField("Origin URL", max_length=200)
     title = models.CharField("Title", max_length=100, default="")
     clicks = models.PositiveIntegerField(default=0)
-    creator = models.CharField("Username", max_length=20, default="")
-    creator_ip = models.GenericIPAddressField("IP", default="0.0.0.0")
+    tags = models.CharField("Tags", max_length=200, blank=True)
+    category = models.CharField(max_length=100, default='Default')
     timestamp = models.DateTimeField("Created Time", auto_now_add=True)
     #
     def __str__(self):
@@ -27,5 +27,5 @@ class Log(models.Model):
     user_agent = models.CharField(max_length=200, default="")
     #
     def __str__(self):
-        text = "logid:{id:^4} url:{url} ip:{ip:<15}".format(id=self.id, url=self.url, ip=self.click_ip)
+        text = f"url:{self.url} ip:{self.click_ip:<15} time:{self.click_timestamp}"
         return text
