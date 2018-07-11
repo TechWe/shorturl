@@ -10,4 +10,5 @@ def index(requests):
 def go_to_origin(requests, keyword):
     item = get_object_or_404(Url, keyword=keyword)
     item.clicked()
-    return redirect(item.origin_url)
+    # Return http301 redirect
+    return redirect(item.origin_url, permanent=True)
