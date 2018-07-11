@@ -20,7 +20,7 @@ class UrlAdmin(admin.ModelAdmin):
 
 class LogAdmin(admin.ModelAdmin):
     list_display = ['id', 'url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
-    list_display_links = ['id', 'url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
+    list_display_links = ['id']
     #
     readonly_fields = ['url', 'click_timestamp', 'click_ip', 'referrer', 'user_agent']
 
