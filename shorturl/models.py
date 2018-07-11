@@ -6,6 +6,7 @@ class Url(models.Model):
     origin_url = models.URLField("Origin URL", max_length=200)
     title = models.CharField("Title", max_length=100, default="")
     clicks = models.PositiveIntegerField(default=0)
+    creator = models.CharField("Username", max_length=20, default="")
     creator_ip = models.GenericIPAddressField("IP", default="0.0.0.0")
     timestamp = models.DateTimeField("Created Time", auto_now_add=True)
     #
@@ -16,7 +17,6 @@ class Url(models.Model):
     def clicked(self):
         self.clicks = models.F('clicks') + 1
         super().save()
-        
 
 # Construct url log model
 class Log(models.Model):
@@ -25,4 +25,7 @@ class Log(models.Model):
     click_ip = models.GenericIPAddressField("Click IP", default="0.0.0.0")
     referrer = models.CharField(max_length=200, default="")
     user_agent = models.CharField(max_length=200, default="")
-
+    #
+    def __str__(self):
+        text = "logid:{id:^4} url:{url} ip:{ip:<15}".format(id=self.id, url=self.url, ip=self.click_ip)
+        return text
