@@ -9,6 +9,7 @@ class Url(models.Model):
     tags = models.CharField("Tags", max_length=200, blank=True)
     category = models.CharField(max_length=100, default='Default')
     timestamp = models.DateTimeField("Created Time", auto_now_add=True)
+    permanent = models.BooleanField("HTTP 301", default=False)
     #
     def __str__(self):
         text = "{title:_^10s}: \n{short:<5s} --> {url}".format(short=self.keyword, url=self.origin_url, title=self.title)
