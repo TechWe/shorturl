@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Url, Log
 
 class UrlAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'keyword', 'origin_url']
+    list_display = ['id', 'title', 'keyword', 'origin_url', 'permanent']
     list_display_links = ['id', 'title']
     #
     readonly_fields = ('clicks', 'timestamp')
@@ -12,7 +12,7 @@ class UrlAdmin(admin.ModelAdmin):
             'fields': ['keyword', 'origin_url', 'title']
             }),
         ('Other', {
-            'fields': ['category', 'tags'],
+            'fields': ['category', 'tags', 'permanent'],
             'classes': ['collapse']
         }),
         (None, {'fields': readonly_fields}),

@@ -26,4 +26,4 @@ def go_to_origin(requests, keyword):
     log = Log(url=keyword, click_ip=ip, referrer=referrer, user_agent=user_agent)
     log.save()
     # Return http301 redirect
-    return redirect(item.origin_url, permanent=True)
+    return redirect(item.origin_url, permanent=item.permanent)
